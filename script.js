@@ -15,20 +15,21 @@ function startQuestionnaire() {
   welcomePage.classList.remove('visible');
   var ageGenderSection = document.getElementById('ageGenderSection');
   ageGenderSection.classList.remove('hidden');
-  ageGenderSection.classList.add('visible');
-
-      
+  ageGenderSection.classList.add('visible');   
 }
+
  //This block get the age value from the slider bar and saves it displaying it in an alert for testing 
   document.getElementById('age').addEventListener('input', function() {
   selectedAgeOption = document.getElementById('age').value;
   document.getElementById('ageValue').textContent = selectedAgeOption;
+  console.log(selectedAgeOption);
+
   });
 
  //This block get the gender value and saves it displaying it in an alert for testing 
   document.getElementById('gender').addEventListener('input', function() {
    selectedGenderOption = document.getElementById('gender').value;
-    
+   console.log(selectedGenderOption);
     // Display a pop-up notification
     //alert(`You have chosen ${selectedGenderOption} gender.`);
   });
@@ -44,6 +45,7 @@ function startQuestionnaire() {
   //This block get the smoke value from the drop down and saves it displaying it in an alert for testing 
   document.getElementById('smoke').addEventListener('input', function() {
      selectedSmokeOption = document.getElementById('smoke').value;
+     console.log(selectedSmokeOption);
   });
   
  
@@ -67,19 +69,33 @@ function startQuestionnaire() {
     var cholesterolSection = document.getElementById('cholesterolSection');
     cholesterolSection.classList.remove('hidden');
     cholesterolSection.classList.add('visible');
+    
   }
+  function reset() {
+    selectedSmokeOption = "Yes";
+    selectedAgeOption = 40;
+    selectedGenderOption = "Male";
+    selectedBloodPressureOption = "";
+    selectedCholesterolOption = "";
 
-  function submitForm() {
+    startQuestionnaire();
+    console.log("called the reset");
+
+  }
+    function submitForm() {
     //selectedAgeOption = document.getElementById('ageSlider').value;
     selectedBloodPressureOption = document.getElementById('bloodPressureInput').value;
     selectedCholesterolOption = document.getElementById('cholesterolInput').value;
-
-    alert(`You have chosen:\nAge: ${selectedAgeOption}`);
-    alert(`You have chosen:\nGender: ${selectedGenderOption}`);
-    alert(`You have chosen:\smoke: ${selectedSmokeOption}`);
-    alert(`You have chosen:\Bp:${selectedBloodPressureOption} `);
-    alert(`You have chosen:\selectedcholesterol: ${selectedCholesterolOption}`);
-    
+    console.log(selectedAgeOption);
+    console.log(selectedGenderOption);
+    console.log(selectedSmokeOption);
+    console.log(selectedBloodPressureOption);
+    console.log(selectedCholesterolOption);
+    // alert(`You have chosen:\nAge: ${selectedAgeOption}`);
+    // alert(`You have chosen:\nGender: ${selectedGenderOption}`);
+    // alert(`You have chosen:\smoke: ${selectedSmokeOption}`);
+    // alert(`You have chosen:\Bp:${selectedBloodPressureOption} `);
+    // alert(`You have chosen:\selectedcholesterol: ${selectedCholesterolOption}`);
   }
 
   
