@@ -86,16 +86,27 @@ function startQuestionnaire() {
     //selectedAgeOption = document.getElementById('ageSlider').value;
     selectedBloodPressureOption = document.getElementById('bloodPressureInput').value;
     selectedCholesterolOption = document.getElementById('cholesterolInput').value;
+    if (selectedBloodPressureOption >= 100 && selectedBloodPressureOption <= 160){
+      console.log("yes it good")
+    }
+    else {
+      // Display an alert to inform the user about invalid input
+      alert('Please enter valid values for Blood Pressure (100-160).');
+    }
     console.log(selectedAgeOption);
     console.log(selectedGenderOption);
     console.log(selectedSmokeOption);
     console.log(selectedBloodPressureOption);
     console.log(selectedCholesterolOption);
+    
+ 
     // alert(`You have chosen:\nAge: ${selectedAgeOption}`);
     // alert(`You have chosen:\nGender: ${selectedGenderOption}`);
     // alert(`You have chosen:\smoke: ${selectedSmokeOption}`);
     // alert(`You have chosen:\Bp:${selectedBloodPressureOption} `);
     // alert(`You have chosen:\selectedcholesterol: ${selectedCholesterolOption}`);
+
+
   }
 
   
