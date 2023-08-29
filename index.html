@@ -43,22 +43,18 @@
     <!-- page display for blood pressure -->
     <form id="bloodPressureSection" class="page hidden">
       <h3>What is your Blood Pressure, mg/dL level?</h3>
-      <label for="BloodPressure">Range(35-100):</label>
-      <input type="range" id="BloodPressure" name="BloodPressure" min="35" max="100" value="40" step="1">
-      <p id="selectedBloodPressure">Selected Level: <span id="BloodPressureValue">40</span></p>
-      </select>
+      <label for="BloodPressure">Range(100-160):</label>
+      <input type="number" id="bloodPressureInput" name="bloodPressure" min="100" max="160" value="100">
       <button type="button" onclick="cholesterolQuestion()">Next</button>
       <button type="button" onclick="SmokeQusestion()">Back</button>
     </form>
     <!-- page display for Total cholesterol, mg/dL:  -->
     <form id="cholesterolSection" class="page hidden">
       <h3>What is yourTotal cholesterol, mg/dL?</h3>
-      <label for="cholesterol">Range(100-280):</label>
-      <input type="range" id="cholesterol" name="cholesterol" min="100" max="280" value="100" step="1">
-      <p id="selectedCholesterol">Selected Level: <span id="CholesterolValue">40</span></p>
-      </select>
-      <button onclick="submit()">Next</button>
-      <button onclick="bloodPressureQuestion()">Back</button>
+      <label for="cholesterol">Range(10-100):</label>
+      <input type="number" id="cholesterolInput" name="cholesterol" min="10" max="100" value="50">
+      <button type="button" onclick="submitForm()">Next</button>
+      <button type="button" onclick="bloodPressureQuestion()">Back</button>
     </form>
 
 </body>

@@ -1,79 +1,86 @@
+//Global variables 
+var selectedSmokeOption = "Yes";
+var selectedAgeOption = 40; //default age
+var selectedGenderOption = "Male"; //Default gender 
+var selectedBloodPressureOption = "";
+var selectedCholesterolOption = "";
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // This block of code is for the welcome page and the start button and age, gender
 function startQuestionnaire() {
-  alert('this was called');
+  //alert('this was called');
   //gets the id and hides the content in that div
-    var welcomePage = document.getElementById('welcomePage');
-     welcomePage.classList.add('hidden');
-
-     var ageGenderSection = document.getElementById('ageGenderSection');
-      ageGenderSection.classList.add('visible');
+  var welcomePage = document.getElementById('welcomePage');
+  welcomePage.classList.add('hidden');
+  welcomePage.classList.remove('visible');
+  var ageGenderSection = document.getElementById('ageGenderSection');
+  ageGenderSection.classList.remove('hidden');
+  ageGenderSection.classList.add('visible');
 
       
 }
  //This block get the age value from the slider bar and saves it displaying it in an alert for testing 
   document.getElementById('age').addEventListener('input', function() {
-    var selectedAgeOption = document.getElementById('age').value;
-    document.getElementById('ageValue').textContent = selectedAgeOption;
-    //Display a pop-up notification
-    alert(`You have chosen ${selectedAgeOption} age.`);
+  selectedAgeOption = document.getElementById('age').value;
+  document.getElementById('ageValue').textContent = selectedAgeOption;
   });
 
  //This block get the gender value and saves it displaying it in an alert for testing 
   document.getElementById('gender').addEventListener('input', function() {
-    var selectedGender = document.getElementById('gender').value;
-    var selectedGenderOption = selectedGender;
+   selectedGenderOption = document.getElementById('gender').value;
+    
     // Display a pop-up notification
-    alert(`You have chosen ${selectedGenderOption} gender.`);
+    //alert(`You have chosen ${selectedGenderOption} gender.`);
   });
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   function SmokeQusestion(){
     var ageGenderSection = document.getElementById('ageGenderSection');
     ageGenderSection.classList.add('hidden');
-
+    ageGenderSection.classList.remove('visible');
     var smokeSection = document.getElementById('smokeSection');
+    smokeSection.classList.remove('hidden');
     smokeSection.classList.add('visible');
-
+  }
   //This block get the smoke value from the drop down and saves it displaying it in an alert for testing 
   document.getElementById('smoke').addEventListener('input', function() {
-    var selectedSmoke = document.getElementById('smoke').value;
-    var selectedSmokeOption = selectedSmoke;
-    //alert(`You have chosen: ${selectedSmokeOption} for smoking.`);
+     selectedSmokeOption = document.getElementById('smoke').value;
   });
-  }
+  
  
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   function bloodPressureQuestion(){
     //This makes the smoke section hidden to the users
     var smokeSection = document.getElementById('smokeSection');
     smokeSection.classList.add('hidden');
-
+    smokeSection.classList.remove('visible');
     var bloodPressureSection = document.getElementById('bloodPressureSection');
+    bloodPressureSection.classList.remove('hidden');
     bloodPressureSection.classList.add('visible');
   }
-   //This block get the bloodPressure value and saves it displaying it in an alert for testing 
-   document.getElementById('BloodPressure').addEventListener('input', function() {
-    var selectedBloodPressureOption = document.getElementById('BloodPressure').value;
-    document.getElementById('BloodPressureValue').textContent = selectedBloodPressureOption;
-    //Display a pop-up notification
-    alert(`You have chosen ${selectedBloodPressureOption} BloodPressure.`);
-
-    // alert(`You have chosen  ${selectedSmokeOption} for smoking.`);
-    // alert(`You have chosen ${selectedAge} age.`);
-
-  });
+  
  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   function cholesterolQuestion(){
     //This makes the bloodPressure section hidden to the users
     var bloodPressureSection = document.getElementById('bloodPressureSection');
     bloodPressureSection.classList.add('hidden');
-
+    bloodPressureSection.classList.remove('visible');
     var cholesterolSection = document.getElementById('cholesterolSection');
+    cholesterolSection.classList.remove('hidden');
     cholesterolSection.classList.add('visible');
-
   }
 
+  function submitForm() {
+    //selectedAgeOption = document.getElementById('ageSlider').value;
+    selectedBloodPressureOption = document.getElementById('bloodPressureInput').value;
+    selectedCholesterolOption = document.getElementById('cholesterolInput').value;
 
+    alert(`You have chosen:\nAge: ${selectedAgeOption}`);
+    alert(`You have chosen:\nGender: ${selectedGenderOption}`);
+    alert(`You have chosen:\smoke: ${selectedSmokeOption}`);
+    alert(`You have chosen:\Bp:${selectedBloodPressureOption} `);
+    alert(`You have chosen:\selectedcholesterol: ${selectedCholesterolOption}`);
+    
+  }
 
   
 // function startQuestionnaire() {
