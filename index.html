@@ -38,7 +38,7 @@
         <option value="no">No</option>
       </select>
        <button type="button" onclick="bloodPressureQuestion()">Next</button>
-      <button type="button" onclick="startQuestionnaire()">Back</button> 
+      <button type="button" onclick="backS()">Back</button> 
       <button type="button" onclick="reset()">Reset</button>
     </form>
     <!-- page display for blood pressure -->
@@ -46,18 +46,28 @@
       <h3>What is your Blood Pressure, mg/dL level?</h3>
       <label for="BloodPressure">Range(100-160):</label>
       <input type="number" id="bloodPressureInput" name="bloodPressure" min="100" max="160" value="100">
+      <label for="Treated">Is it Treated(y/n):</label>
+      <select id="Treated" name="Treated">
+        <option value="yes">Yes</option>
+        <option value="no">No</option>
+      </select>
       <button type="button" onclick="cholesterolQuestion()">Next</button>
-      <button type="button" onclick="SmokeQusestion()">Back</button>
+      <button type="button" onclick="backbp()">Back</button>
       <button type="button" onclick="reset()">Reset</button>
       
     </form>
     <!-- page display for Total cholesterol, mg/dL:  -->
     <form id="cholesterolSection" class="page hidden">
-      <h3>What is yourTotal cholesterol, mg/dL?</h3>
-      <label for="cholesterol">Range(10-100):</label>
-      <input type="number" id="cholesterolInput" name="cholesterol" min="10" max="100" value="50">
+      <h3>What is your Total cholesterol, mg/dL?</h3>
+      <label for="cholesterol">Range(100-300):</label>
+      <input type="number" id="cholesterolInput" name="cholesterol" min="100" max="300" value="150">
       <button type="button" onclick="submitForm()">Submit</button>
-      <button type="button" onclick="bloodPressureQuestion()">Back</button>
+      <button type="button" onclick="backC()">Back</button>
+      <button type="button" onclick="reset()">Reset</button>
+    </form>
+    <form id="resultsSection" class="page hidden">
+      <h3>The results of your Framingham Risk score is... </h3>
+      <label for="results" id= "pointsL">10-year risk in % </label>
       <button type="button" onclick="reset()">Reset</button>
     </form>
 </body>
