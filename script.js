@@ -4,7 +4,8 @@ var selectedAgeOption = 40; //default age
 var selectedGenderOption = "Male"; //Default gender 
 var selectedBloodPressureOption = "";
 var selectedCholesterolOption = "";
-var genderPicked = '';
+var selectedHDL = "";
+var genderPicked = "";
 var points = 0;
 var treatedStatus = "Yes";
 var result = "";
@@ -85,11 +86,25 @@ function startQuestionnaire() {
     smokeSection.classList.add('visible');
   }
  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+ function HDLQuestion(){
+  //This makes the cholesterol section hidden to the users
+  var bloodPressureSection = document.getElementById('bloodPressureSection');
+  bloodPressureSection.classList.add('hidden');
+  bloodPressureSection.classList.remove('visible');
+  var HDLSection = document.getElementById('HDLSection');
+  HDLSection.classList.remove('hidden');
+  HDLSection.classList.add('visible');
+}
+//Gets the value and saves it in the variable 
+document.getElementById('HDLSection').addEventListener('input', function() {
+  selectedHDL = document.getElementById('HDLInput').value;
+  console.log(selectedHDL);
+});
   function cholesterolQuestion(){
     //This makes the bloodPressure section hidden to the users
-    var bloodPressureSection = document.getElementById('bloodPressureSection');
-    bloodPressureSection.classList.add('hidden');
-    bloodPressureSection.classList.remove('visible');
+    var HDLSection = document.getElementById('HDLSection');
+    HDLSection.classList.add('hidden');
+    HDLSection.classList.remove('visible');
     var cholesterolSection = document.getElementById('cholesterolSection');
     cholesterolSection.classList.remove('hidden');
     cholesterolSection.classList.add('visible');
@@ -105,20 +120,32 @@ function startQuestionnaire() {
     bloodPressureSection.classList.add('visible');
 
   }
-  function reset() {
-    selectedSmokeOption = "Yes";
-    selectedAgeOption = 40;
-    selectedGenderOption = "Male";
-    selectedBloodPressureOption = "";
-    selectedCholesterolOption = "";
-    startQuestionnaire();
-    console.log("called the reset");
+  function resetPage(){
+  // Hide all the sections
+  var smokeSection = document.getElementById('smokeSection');
+  smokeSection.classList.add('hidden');
+  smokeSection.classList.remove('visible');
+  var bloodPressureSection = document.getElementById('bloodPressureSection');
+  bloodPressureSection.classList.add('hidden');
+  bloodPressureSection.classList.remove('visible');
+  var cholesterolSection = document.getElementById('cholesterolSection');
+  cholesterolSection.classList.add('hidden');
+  cholesterolSection.classList.remove('visible');
+  var results = document.getElementById('resultsSection');
+  results.classList.add('hidden');
+  results.classList.remove('visible');
 
+  // Show the age and gender section
+  var ageGenderSection = document.getElementById('ageGenderSection');
+  ageGenderSection.classList.remove('hidden');
+  ageGenderSection.classList.add('visible');
+    console.log("called the reset");
   }
-    function submitForm() {
+  function submitForm() {
     //selectedAgeOption = document.getElementById('ageSlider').value;
     selectedBloodPressureOption = document.getElementById('bloodPressureInput').value;
     selectedCholesterolOption = document.getElementById('cholesterolInput').value;
+    
     // Check the validity of the input values
     while(true){
       var valid = true;
@@ -130,14 +157,6 @@ function startQuestionnaire() {
         break;
       }
         else {
-          // if(bloodPressureInput == !valid){
-          //   alert('Please enter valid values for Cholesterol(100-300).');
-          //   cholesterolInput.value = '';
-          // }
-          // else if (cholesterolInput == !valid) {
-          //   alert('Please enter valid values for Blood Pressure(100-200).');
-          //   bloodPressureInput.value = '';
-
           alert('Please enter a value that is in the range.');
           }
        // }
@@ -149,15 +168,10 @@ function startQuestionnaire() {
     console.log(selectedSmokeOption);
     console.log(selectedBloodPressureOption);
     console.log(treatedStatus);
+    console.log(selectedHDL);
     console.log(selectedCholesterolOption);
     displayResults();
-    // alert(`You have chosen:\nAge: ${selectedAgeOption}`);
-    // alert(`You have chosen:\nGender: ${selectedGenderOption}`);
-    // alert(`You have chosen:\smoke: ${selectedSmokeOption}`);
-    // alert(`You have chosen:\Bp:${selectedBloodPressureOption} `);
-    // alert(`You have chosen:\selectedcholesterol: ${selectedCholesterolOption}`);
   }
-  
   function checkGender(){
     if(selectedGenderOption == 'Male'){
       genderPicked = "Male"
@@ -188,6 +202,7 @@ function startQuestionnaire() {
       points += 16;
     }
   }
+
   function checkAgeM() {
     if (selectedAgeOption >= 20 && selectedAgeOption <= 34) {
       points -= 9;
@@ -435,7 +450,6 @@ function startQuestionnaire() {
     }
   }
   function displayResults(){
-
     var cholesterolSection = document.getElementById('cholesterolSection');
     cholesterolSection.classList.add('hidden');
     cholesterolSection.classList.remove('visible');
@@ -519,12 +533,34 @@ function startQuestionnaire() {
       result =  "30%";
     }
   }
-  
+  function checkHDLF(){
+    if(points >= 60){
+      points -= 1;
+    }else if(points >=50 && points <= 59){
+      points +=0;
+    }else if(points >=40 && points <= 49){
+      points += 1;
+    }else if (points <40){
+      points += 2;
+    }
+  }
+  function checkHDLM(){
+    if(points >= 60){
+      points -= 1;
+    }else if(points >=50 && points <= 59){
+      points +=0;
+    }else if(points >=40 && points <= 49){
+      points += 1;
+    }else if (points <40){
+      points += 2;
+    }
+  }
   function calculations(){
     checkGender();
     if(genderPicked == "Female"){
       checkAgeF();
       checkCholesterolF();
+      checkHDLF();
       checkSmokingF();
       checkBloodPressureF();
       resultF();
@@ -535,96 +571,10 @@ function startQuestionnaire() {
       checkCholesterolM();
       checkSmokingM();
       checkBloodPressureM();
+      checkHDLM();
       resultM();
       alert(points);
       } 
   }
-  
-// function startQuestionnaire() {
-//   //gets the id and hides the content in that div
-//     var welcomePage = document.getElementById('welcomePage');
-//      welcomePage.classList.add('hidden');
-//      var tool = document.getElementById('ageGenderSection');
-//       tool.classList.add('visible');
-//   }
-
-//   //to get the amount from the slider bar and display it to the users HDLValue
-//   function SmokeQusestion() {
-//     const welcomePage = document.getElementById('smokeSection');
-//     const HDLQ = document.getElementById('smokeSection');
-    
-//     welcomePage.classList.add('hidden');
-//     HDLQ.classList.remove('hidden');
-//   }
-
-//   //to get the amount from the slider bar and display it to the users HDLValue
-//   function HDLQusestion() {
-//     const welcomePage = document.getElementById('HDLSection');
-//     const HDLQ = document.getElementById('HDLSection');
-    
-//     welcomePage.classList.add('hidden');
-//     HDLQ.classList.remove('hidden');
-//   }
-  
-//   function cholesterolQuestion() {
-//     const HDLSection = document.getElementById('HDLSection');
-//     const cholesterolSection = document.getElementById('cholesterolSection');
-    
-//     HDLSection.classList.add('hidden');
-//     cholesterolSection.classList.remove('hidden');
-//   }
-//   function goBack(sectionId) {
-//     const currentSection = document.getElementById(sectionId);
-//     currentSection.classList.add('hidden');
-//     ageGenderSection.classList.remove('hidden');
-//   }
-//   document.getElementById('HDL').addEventListener('input', function () {
-//     const selectedHDL = document.getElementById('HDL').value;
-//     document.getElementById('HDLValue').textContent = selectedHDL;
-//   });
-
-//   //to get the amount from the slider bar and display it to the users age
-//   document.getElementById('age').addEventListener('input', function () {
-//     const selectedAge = document.getElementById('age').value;
-//     document.getElementById('ageValue').textContent = selectedAge;
-//     // Display a pop-up notification
-//     alert(`You have chosen ${selectedGender} gender.`);
-//   });
-
-//   //to get the amount from the slider bar and display it to the users age
-//   document.getElementById('gender').addEventListener('input', function () {
-//     const selectedAge = document.getElementById('gender').value;
-//     document.getElementById('ageValue').textContent = selectedGender;
-//     // Display a pop-up notification
-//     alert(`You have chosen ${selectedGender} gender.`);
-//   });
-
-// //   //to get the amount from the and display it to the users age
-// //   document.getElementById('HDL').addEventListener('input', function () {
-// //     const selectedHDL = document.getElementById('HDL').value;
-// //     document.getElementById('HDLValue').textContent = selectedHDL;
-// //   });
-  
-//   document.getElementById('cholesterol').addEventListener('input', function () {
-//     const selectedCholesterol = document.getElementById('cholesterol').value;
-//     document.getElementById('cholesterolValue').textContent = selectedCholesterol;
-//   });
-
-//   function nextPage() {
-//     // Get the selected gender value
-//     const selectedGender = document.getElementById('gender').value;
-  
-    
-//   }
-//   function submitForm() {
-//     const selectedGender = document.getElementById('gender').value;
-//     const selectedAge = document.getElementById('age').value;
-//     const selectedHDL = document.getElementById('HDL').value;
-//     const selectedCholesterol = document.getElementById('cholesterol').value;
-//     const selectedSmoke = document.getElementById('smoke').value;
-  
-//     alert(`You have chosen:\nGender: ${selectedSmoke}\nSmoke:${selectedAge}\nAge: ${selectedGender}\nHDL: ${selectedHDL}\nCholesterol: ${selectedCholesterol}`);
-// }
-// // the page is a mess need to clean up need to look at lecture slides and see how thay want it this is from GPT 
-  
+//need to fix the back button and make sure the score is still right
   
