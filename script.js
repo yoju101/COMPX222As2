@@ -10,7 +10,6 @@ var points = 0;
 var treatedStatus = "Yes";
 var result = "";
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // This block of code is for the welcome page and the start button and age, gender
 function startQuestionnaire() {
   //alert('this was called');
@@ -26,18 +25,18 @@ function startQuestionnaire() {
   document.getElementById('age').addEventListener('input', function() {
   selectedAgeOption = document.getElementById('age').value;
   document.getElementById('ageValue').textContent = selectedAgeOption;
-  console.log(selectedAgeOption);
+  console.log(selectedAgeOption , 'age');
 
   });
 
  //This block get the gender value and saves it displaying it in an alert for testing 
   document.getElementById('gender').addEventListener('input', function() {
    selectedGenderOption = document.getElementById('gender').value;
-   console.log(selectedGenderOption);
+   console.log(selectedGenderOption , 'gender');
     // Display a pop-up notification
     //alert(`You have chosen ${selectedGenderOption} gender.`);
   });
-  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  
   function SmokeQusestion(){
     var ageGenderSection = document.getElementById('ageGenderSection');
     ageGenderSection.classList.add('hidden');
@@ -46,6 +45,7 @@ function startQuestionnaire() {
     smokeSection.classList.remove('hidden');
     smokeSection.classList.add('visible');
   }
+  //This function hides the smoke section and shows the age and gender
   function backS(){
     var smokeSection = document.getElementById('smokeSection');
     smokeSection.classList.add('hidden');
@@ -57,10 +57,9 @@ function startQuestionnaire() {
   //This block get the smoke value from the drop down and saves it displaying it in an alert for testing 
   document.getElementById('smoke').addEventListener('input', function() {
      selectedSmokeOption = document.getElementById('smoke').value;
-     console.log(selectedSmokeOption);
+     console.log(selectedSmokeOption , 'somke ');
   });
   
-  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   function bloodPressureQuestion(){
     //This makes the smoke section hidden to the users
     var smokeSection = document.getElementById('smokeSection');
@@ -73,11 +72,13 @@ function startQuestionnaire() {
   //Gets the value and saves it in the variable 
   document.getElementById('Treated').addEventListener('input', function() {
     treatedStatus = document.getElementById('Treated').value;
-    console.log(treatedStatus);
+    //selectedBloodPressureOption = document.getElementById('bloodPressureInput').value;
+    console.log(selectedBloodPressureOption , 'bp');
+    console.log(treatedStatus , 'bp treated or not');
  });
+ //This function hides the blood pressure and shows the smoke section
   function backbp(){
     //bp goes to smaoke
-    
     var bloodPressureSection = document.getElementById('bloodPressureSection');
     bloodPressureSection.classList.add('hidden');
     bloodPressureSection.classList.remove('visible');
@@ -85,7 +86,7 @@ function startQuestionnaire() {
     smokeSection.classList.remove('hidden');
     smokeSection.classList.add('visible');
   }
- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
  function HDLQuestion(){
   //This makes the cholesterol section hidden to the users
   var bloodPressureSection = document.getElementById('bloodPressureSection');
@@ -95,23 +96,35 @@ function startQuestionnaire() {
   HDLSection.classList.remove('hidden');
   HDLSection.classList.add('visible');
 }
-//Gets the value and saves it in the variable 
-document.getElementById('HDLSection').addEventListener('input', function() {
-  selectedHDL = document.getElementById('HDLInput').value;
-  console.log(selectedHDL);
-});
+//Gets the value and saves it in the variable HDL
+// document.getElementById('cholesterolSection').addEventListener('input', function() {
+//   selectedHDL = document.getElementById('HDLInput').value;
+//   console.log(selectedHDL , 'Hdl');
+// });
+//CHOLESTEROL
+// document.getElementById('cholesterolSection').addEventListener('input', function() {
+//   selectedCholesterolOption = document.getElementById('cholesterolInput').value;
+//   console.log(selectedCholesterolOption , 'chol');
+// });
+function backhdl(){
+  var HDLSection = document.getElementById('HDLSection');
+  HDLSection.classList.add('hidden');
+  HDLSection.classList.remove('visible');
+  var bloodPressureSection = document.getElementById('bloodPressureSection');
+  bloodPressureSection.classList.remove('hidden');
+  bloodPressureSection.classList.add('visible');
+
+}
   function cholesterolQuestion(){
-    //This makes the bloodPressure section hidden to the users
-    var HDLSection = document.getElementById('HDLSection');
-    HDLSection.classList.add('hidden');
-    HDLSection.classList.remove('visible');
+    var bloodPressureSection = document.getElementById('bloodPressureSection');
+    bloodPressureSection.classList.add('hidden');
+    bloodPressureSection.classList.remove('visible');
     var cholesterolSection = document.getElementById('cholesterolSection');
     cholesterolSection.classList.remove('hidden');
-    cholesterolSection.classList.add('visible');
-    
+    cholesterolSection.classList.add('visible');    
   }
   function backC(){
-    //chlo goes to bp
+    //chlo goes to hdl
     var cholesterolSection = document.getElementById('cholesterolSection');
     cholesterolSection.classList.add('hidden');
     cholesterolSection.classList.remove('visible');
@@ -139,41 +152,50 @@ document.getElementById('HDLSection').addEventListener('input', function() {
   var ageGenderSection = document.getElementById('ageGenderSection');
   ageGenderSection.classList.remove('hidden');
   ageGenderSection.classList.add('visible');
-    console.log("called the reset");
+  console.log("called the reset");
+  points = 0;
   }
   function submitForm() {
     //selectedAgeOption = document.getElementById('ageSlider').value;
     selectedBloodPressureOption = document.getElementById('bloodPressureInput').value;
     selectedCholesterolOption = document.getElementById('cholesterolInput').value;
+    selectedHDL = document.getElementById('HDLInput').value;
     
     // Check the validity of the input values
-    while(true){
+    //while(true){
       var valid = true;
       if (bloodPressureInput.checkValidity() && cholesterolInput.checkValidity()) {
         // Values are valid, proceed with calculations
         selectedBloodPressureOption = parseInt(bloodPressureInput.value);
         selectedCholesterolOption = parseInt(cholesterolInput.value);
         valid = false;
-        break;
+        //break;
       }
         else {
           alert('Please enter a value that is in the range.');
           }
-       // }
-      }
-      calculations();
+      //}
+      //a 76 - 16
+      //g f 
+      //s y - 1
+      //bp 120 yes - 3
+      //hdl 30 - 2
+      //c 280 - 2
+      //24 27%
 
-    console.log(selectedAgeOption);
-    console.log(selectedGenderOption);
-    console.log(selectedSmokeOption);
-    console.log(selectedBloodPressureOption);
-    console.log(treatedStatus);
-    console.log(selectedHDL);
-    console.log(selectedCholesterolOption);
+    calculations();
+    console.log(selectedAgeOption , 'age');
+    console.log(selectedGenderOption , 'gender');
+    console.log(selectedSmokeOption , 'smoke');
+    console.log(selectedBloodPressureOption , 'bp');
+    console.log(treatedStatus , 'treated or not');
+    console.log(selectedHDL , 'hdl');
+    console.log(selectedCholesterolOption , 'chol');
     displayResults();
+    console.log(points , 'total points');
   }
   function checkGender(){
-    if(selectedGenderOption == 'Male'){
+    if(selectedGenderOption == "Male"){
       genderPicked = "Male"
     }
     else{genderPicked = "Female";}
@@ -202,14 +224,13 @@ document.getElementById('HDLSection').addEventListener('input', function() {
       points += 16;
     }
   }
-
   function checkAgeM() {
     if (selectedAgeOption >= 20 && selectedAgeOption <= 34) {
       points -= 9;
     } else if (selectedAgeOption >= 35 && selectedAgeOption <= 39) {
       points -= 4;
     } else if (selectedAgeOption >= 40 && selectedAgeOption <= 44) {
-      points -= 0;
+      points += 0;
     } else if (selectedAgeOption >= 45 && selectedAgeOption <= 49) {
       points += 3;
     } else if (selectedAgeOption >= 50 && selectedAgeOption <= 54) {
@@ -459,7 +480,7 @@ document.getElementById('HDLSection').addEventListener('input', function() {
 
     // Display the calculated points in the label
     var pointsLabel = document.getElementById("pointsL");
-    pointsLabel.textContent = "Points: " + result; 
+    pointsLabel.textContent = " " + result; 
   }
   function resultM() {
     if (points == 0) {
@@ -493,13 +514,7 @@ document.getElementById('HDLSection').addEventListener('input', function() {
     }
   }
   function resultF() {
-    if (points == 0) {
-      result =  "<1%";
-    } else if (points >= 1 && points <= 4) {
-      result =  "1%";
-    } else if (points >= 5 && points <= 6) {
-      result =  "2%";
-    } else if (points < 9) {
+    if (points < 9) {
       result =  "<1%";
     } else if (points >= 9 && points <= 12) {
       result =  "1%";
@@ -510,71 +525,64 @@ document.getElementById('HDLSection').addEventListener('input', function() {
     } else if (points == 16) {
       result =  "4%";
     } else if (points == 17) {
-      result =  "4%";
+      result =  "5%";
     } else if (points == 18) {
       result =  "6%";
     } else if (points == 19) {
       result =  "8%";
-    } else if (points >=20) {
+    } else if (points == 20) {
       result =  "11%";
     }
-    else if (points >=21) {
+    else if (points == 21) {
       result =  "14%";
     }
-    else if (points >=22) {
+    else if (points == 22) {
       result =  "17%";
     }
-    else if (points >=23) {
+    else if (points == 23) {
       result =  "22%";
     }
-    else if (points >= 24) {
+    else if (points == 24) {
       result =  "27%";
-    }else if (points > 25){
+    }else if (points >= 25){
       result =  "30%";
     }
   }
-  function checkHDLF(){
-    if(points >= 60){
+  function checkHDL(){
+    if(selectedHDL >= 60){
       points -= 1;
-    }else if(points >=50 && points <= 59){
+    }else if(selectedHDL >=50 && selectedHDL <= 59){
       points +=0;
-    }else if(points >=40 && points <= 49){
+    }else if(selectedHDL >= 40 && selectedHDL <= 49){
       points += 1;
-    }else if (points <40){
+    }else if (selectedHDL < 40){
       points += 2;
     }
-  }
-  function checkHDLM(){
-    if(points >= 60){
-      points -= 1;
-    }else if(points >=50 && points <= 59){
-      points +=0;
-    }else if(points >=40 && points <= 49){
-      points += 1;
-    }else if (points <40){
-      points += 2;
-    }
+   // console.log(points , 'check hdl');
   }
   function calculations(){
     checkGender();
     if(genderPicked == "Female"){
+      console.log(genderPicked , 'was picked');
       checkAgeF();
+      alert(points ,'age');
       checkCholesterolF();
-      checkHDLF();
+      checkHDL();
       checkSmokingF();
       checkBloodPressureF();
       resultF();
       alert(points);  
     }
     else{
+      console.log('male was picked')
       checkAgeM();
       checkCholesterolM();
       checkSmokingM();
       checkBloodPressureM();
-      checkHDLM();
+      checkHDL();
       resultM();
       alert(points);
       } 
   }
-//need to fix the back button and make sure the score is still right
+
   
